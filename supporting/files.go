@@ -7,7 +7,7 @@ import (
 	"io"
 	"mime/multipart"
 
-	"github.com/uqpay/uqpay-sdk-go/common"
+	"github.com/jackillll/uqpay-sdk-go/common"
 )
 
 // FilesClient handles file operations

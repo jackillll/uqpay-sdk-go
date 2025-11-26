@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/uqpay/uqpay-sdk-go/banking"
+	"github.com/jackillll/uqpay-sdk-go/banking"
 )
 
 func TestConversionCreateQuote(t *testing.T) {

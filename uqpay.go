@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/uqpay/uqpay-sdk-go/auth"
-	"github.com/uqpay/uqpay-sdk-go/banking"
-	"github.com/uqpay/uqpay-sdk-go/common"
-	"github.com/uqpay/uqpay-sdk-go/configuration"
-	"github.com/uqpay/uqpay-sdk-go/connect"
-	"github.com/uqpay/uqpay-sdk-go/issuing"
-	"github.com/uqpay/uqpay-sdk-go/supporting"
+	"github.com/jackillll/uqpay-sdk-go/auth"
+	"github.com/jackillll/uqpay-sdk-go/banking"
+	"github.com/jackillll/uqpay-sdk-go/common"
+	"github.com/jackillll/uqpay-sdk-go/configuration"
+	"github.com/jackillll/uqpay-sdk-go/connect"
+	"github.com/jackillll/uqpay-sdk-go/issuing"
+	"github.com/jackillll/uqpay-sdk-go/supporting"
 )
 
 // Client is the main UQPAY SDK client

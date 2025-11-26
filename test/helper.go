@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/uqpay/uqpay-sdk-go"
-	"github.com/uqpay/uqpay-sdk-go/configuration"
+	"github.com/jackillll/uqpay-sdk-go"
+	"github.com/jackillll/uqpay-sdk-go/configuration"
 )
 
 // GetTestClient creates a test client with credentials from environment variables

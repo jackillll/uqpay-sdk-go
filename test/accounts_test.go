@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/uqpay/uqpay-sdk-go/connect"
+	"github.com/jackillll/uqpay-sdk-go/connect"
 )
 
 func TestAccounts(t *testing.T) {

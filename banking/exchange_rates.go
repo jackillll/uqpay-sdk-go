@@ -4,9 +4,8 @@ import (
 	"context"
 	"fmt"
 	"strings"
-	"time"
 
-	"github.com/uqpay/uqpay-sdk-go/common"
+	"github.com/jackillll/uqpay-sdk-go/common"
 )
 
 // ExchangeRatesClient handles exchange rate operations
@@ -19,7 +18,6 @@ type RateItem struct {
 	CurrencyPair string `json:"currency_pair"` // e.g., "USD/EUR"
 	BuyPrice     string `json:"buy_price"`     // Price for buying the base currency
 	SellPrice    string `json:"sell_price"`    // Price for selling the base currency
-	UpdateTime   string `json:"update_time"`
 }
 
 // ListRatesRequest represents a request to list exchange rates
@@ -30,7 +28,7 @@ type ListRatesRequest struct {
 // ListRatesResponse represents a response containing exchange rates
 type ListRatesResponse struct {
 	Data struct {
-		LastUpdated              time.Time  `json:"last_updated"`
+		LastUpdated              string     `json:"last_updated"`
 		Rates                    []RateItem `json:"rates"`
 		UnavailableCurrencyPairs []string   `json:"unavailable_currency_pairs"`
 	} `json:"data"`

@@ -1,4 +1,4 @@
-module github.com/uqpay/uqpay-sdk-go
+module github.com/jackillll/uqpay-sdk-go
 
 go 1.19
 

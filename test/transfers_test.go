@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/uqpay/uqpay-sdk-go/banking"
+	"github.com/jackillll/uqpay-sdk-go/banking"
 )
 
 func TestTransfers(t *testing.T) {
@@ -72,22 +72,22 @@ func TestTransfers(t *testing.T) {
 
 		// Uncomment and update with valid account IDs to test
 		/*
-		req := &banking.CreateTransferRequest{
-			SourceAccountID: "source-account-uuid",
-			TargetAccountID: "target-account-uuid",
-			Currency:        "USD",
-			Amount:          "10.00",
-			Reason:          "Test transfer",
-		}
+			req := &banking.CreateTransferRequest{
+				SourceAccountID: "source-account-uuid",
+				TargetAccountID: "target-account-uuid",
+				Currency:        "USD",
+				Amount:          "10.00",
+				Reason:          "Test transfer",
+			}
 
-		resp, err := client.Banking.Transfers.Create(ctx, req)
-		if err != nil {
-			t.Fatalf("❌ Failed to create transfer: %v", err)
-		}
+			resp, err := client.Banking.Transfers.Create(ctx, req)
+			if err != nil {
+				t.Fatalf("❌ Failed to create transfer: %v", err)
+			}
 
-		t.Logf("✅ Transfer created successfully")
-		t.Logf("💰 Transfer ID: %s", resp.TransferID)
-		t.Logf("   Reference: %s", resp.ShortReferenceID)
+			t.Logf("✅ Transfer created successfully")
+			t.Logf("💰 Transfer ID: %s", resp.TransferID)
+			t.Logf("   Reference: %s", resp.ShortReferenceID)
 		*/
 	})
 

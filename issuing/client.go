@@ -1,6 +1,6 @@
 package issuing
 
-import "github.com/uqpay/uqpay-sdk-go/common"
+import "github.com/jackillll/uqpay-sdk-go/common"
 
 // Client provides access to Issuing APIs
 type Client struct {

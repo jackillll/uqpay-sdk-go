@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/uqpay/uqpay-sdk-go/banking"
+	"github.com/jackillll/uqpay-sdk-go/banking"
 )
 
 func TestPayouts(t *testing.T) {
@@ -120,28 +120,28 @@ func TestPayouts(t *testing.T) {
 
 		// Uncomment to test actual payout creation
 		/*
-		beneficiaryID := beneficiariesResp.Data[0].BeneficiaryID
-		t.Logf("🔍 Using beneficiary: %s", beneficiaryID)
+			beneficiaryID := beneficiariesResp.Data[0].BeneficiaryID
+			t.Logf("🔍 Using beneficiary: %s", beneficiaryID)
 
-		req := &banking.CreatePayoutRequest{
-			BeneficiaryID: beneficiaryID,
-			Currency:      "USD",
-			Amount:        "10.00",
-			PayoutPurpose: "test_payment",
-			Description:   "Test payout via SDK",
-			Reference:     "TEST-REF-001",
-		}
+			req := &banking.CreatePayoutRequest{
+				BeneficiaryID: beneficiaryID,
+				Currency:      "USD",
+				Amount:        "10.00",
+				PayoutPurpose: "test_payment",
+				Description:   "Test payout via SDK",
+				Reference:     "TEST-REF-001",
+			}
 
-		resp, err := client.Banking.Payouts.Create(ctx, req)
-		if err != nil {
-			t.Fatalf("❌ Failed to create payout: %v", err)
-		}
+			resp, err := client.Banking.Payouts.Create(ctx, req)
+			if err != nil {
+				t.Fatalf("❌ Failed to create payout: %v", err)
+			}
 
-		t.Logf("✅ Payout created successfully")
-		t.Logf("💰 Payout ID: %s", resp.PayoutID)
-		t.Logf("   Reference: %s", resp.ShortReferenceID)
-		t.Logf("   Status: %s", resp.Status)
-		t.Logf("   Created: %s", resp.CreateTime)
+			t.Logf("✅ Payout created successfully")
+			t.Logf("💰 Payout ID: %s", resp.PayoutID)
+			t.Logf("   Reference: %s", resp.ShortReferenceID)
+			t.Logf("   Status: %s", resp.Status)
+			t.Logf("   Created: %s", resp.CreateTime)
 		*/
 	})
 
@@ -150,35 +150,35 @@ func TestPayouts(t *testing.T) {
 
 		// Uncomment to test creating payout with inline beneficiary details
 		/*
-		req := &banking.CreatePayoutRequest{
-			Currency:      "USD",
-			Amount:        "10.00",
-			PayoutPurpose: "vendor_payment",
-			Description:   "Test payout with inline beneficiary",
-			Beneficiary: &banking.PayoutBeneficiary{
-				BeneficiaryName: "Test Beneficiary",
-				BankDetails: &banking.PayoutBankDetails{
-					AccountNumber: "1234567890",
-					AccountName:   "Test Account",
-					BankCode:      "TEST001",
-					BankName:      "Test Bank",
-					AccountType:   "CHECKING",
+			req := &banking.CreatePayoutRequest{
+				Currency:      "USD",
+				Amount:        "10.00",
+				PayoutPurpose: "vendor_payment",
+				Description:   "Test payout with inline beneficiary",
+				Beneficiary: &banking.PayoutBeneficiary{
+					BeneficiaryName: "Test Beneficiary",
+					BankDetails: &banking.PayoutBankDetails{
+						AccountNumber: "1234567890",
+						AccountName:   "Test Account",
+						BankCode:      "TEST001",
+						BankName:      "Test Bank",
+						AccountType:   "CHECKING",
+					},
+					ContactDetails: &banking.PayoutContactDetails{
+						Email:       "test@example.com",
+						PhoneNumber: "+1234567890",
+						Country:     "US",
+					},
 				},
-				ContactDetails: &banking.PayoutContactDetails{
-					Email:       "test@example.com",
-					PhoneNumber: "+1234567890",
-					Country:     "US",
-				},
-			},
-		}
+			}
 
-		resp, err := client.Banking.Payouts.Create(ctx, req)
-		if err != nil {
-			t.Fatalf("❌ Failed to create payout: %v", err)
-		}
+			resp, err := client.Banking.Payouts.Create(ctx, req)
+			if err != nil {
+				t.Fatalf("❌ Failed to create payout: %v", err)
+			}
 
-		t.Logf("✅ Payout created successfully")
-		t.Logf("💰 Payout ID: %s", resp.PayoutID)
+			t.Logf("✅ Payout created successfully")
+			t.Logf("💰 Payout ID: %s", resp.PayoutID)
 		*/
 	})
 

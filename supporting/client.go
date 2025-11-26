@@ -1,6 +1,6 @@
 package supporting
 
-import "github.com/uqpay/uqpay-sdk-go/common"
+import "github.com/jackillll/uqpay-sdk-go/common"
 
 // Client represents the Supporting Services API client
 type Client struct {

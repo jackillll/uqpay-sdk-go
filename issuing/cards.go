@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/uqpay/uqpay-sdk-go/common"
+	"github.com/jackillll/uqpay-sdk-go/common"
 )
 
 // CardsClient handles card operations
@@ -42,11 +42,11 @@ type RiskControls struct {
 
 // CardUpdateRequest represents a card update request
 type CardUpdateRequest struct {
-	CardLimit           *float64          `json:"card_limit,omitempty"`
-	NoPINPaymentAmount  *float64          `json:"no_pin_payment_amount,omitempty"`
-	SpendingControls    []SpendingControl `json:"spending_controls,omitempty"`
-	RiskControls        *RiskControls     `json:"risk_controls,omitempty"`
-	Metadata            map[string]string `json:"metadata,omitempty"`
+	CardLimit          *float64          `json:"card_limit,omitempty"`
+	NoPINPaymentAmount *float64          `json:"no_pin_payment_amount,omitempty"`
+	SpendingControls   []SpendingControl `json:"spending_controls,omitempty"`
+	RiskControls       *RiskControls     `json:"risk_controls,omitempty"`
+	Metadata           map[string]string `json:"metadata,omitempty"`
 }
 
 // UpdateCardStatusRequest represents a card status update request
@@ -128,24 +128,24 @@ type CardStatusResponse struct {
 
 // RetrieveCardResponse represents detailed card information
 type RetrieveCardResponse struct {
-	CardID              string                  `json:"card_id"`
-	CardBIN             string                  `json:"card_bin"`
-	CardScheme          string                  `json:"card_scheme"`
-	CardCurrency        string                  `json:"card_currency"`
-	CardNumber          string                  `json:"card_number"`
-	FormFactor          string                  `json:"form_factor"`
-	ModeType            string                  `json:"mode_type"`
-	CardProductID       string                  `json:"card_product_id"`
-	CardLimit           float64                 `json:"card_limit"`
-	AvailableBalance    string                  `json:"available_balance"`
-	Cardholder          CardholderInfo          `json:"cardholder"`
-	SpendingControls    []SpendingControl       `json:"spending_controls,omitempty"`
-	NoPINPaymentAmount  string                  `json:"no_pin_payment_amount"`
-	RiskControls        *RiskControls           `json:"risk_controls,omitempty"`
-	Metadata            map[string]string       `json:"metadata,omitempty"`
-	CardStatus          string                  `json:"card_status"`
-	UpdateReason        *string                 `json:"update_reason,omitempty"`
-	ConsumedAmount      *string                 `json:"consumed_amount,omitempty"`
+	CardID             string            `json:"card_id"`
+	CardBIN            string            `json:"card_bin"`
+	CardScheme         string            `json:"card_scheme"`
+	CardCurrency       string            `json:"card_currency"`
+	CardNumber         string            `json:"card_number"`
+	FormFactor         string            `json:"form_factor"`
+	ModeType           string            `json:"mode_type"`
+	CardProductID      string            `json:"card_product_id"`
+	CardLimit          float64           `json:"card_limit"`
+	AvailableBalance   string            `json:"available_balance"`
+	Cardholder         CardholderInfo    `json:"cardholder"`
+	SpendingControls   []SpendingControl `json:"spending_controls,omitempty"`
+	NoPINPaymentAmount string            `json:"no_pin_payment_amount"`
+	RiskControls       *RiskControls     `json:"risk_controls,omitempty"`
+	Metadata           map[string]string `json:"metadata,omitempty"`
+	CardStatus         string            `json:"card_status"`
+	UpdateReason       *string           `json:"update_reason,omitempty"`
+	ConsumedAmount     *string           `json:"consumed_amount,omitempty"`
 }
 
 // CardholderInfo represents cardholder information in card response
