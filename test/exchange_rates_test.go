@@ -23,25 +23,25 @@ func TestExchangeRates(t *testing.T) {
 			t.Fatalf("❌ Failed to list all exchange rates: %v", err)
 		}
 
-		t.Logf("✅ Retrieved %d exchange rates", len(resp.Rates))
+		t.Logf("✅ Retrieved %d exchange rates", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			// Display first few rates as examples
 			displayCount := 5
-			if len(resp.Rates) < displayCount {
-				displayCount = len(resp.Rates)
+			if len(resp.Data.Rates) < displayCount {
+				displayCount = len(resp.Data.Rates)
 			}
 
 			t.Logf("📊 Sample exchange rates:")
 			for i := 0; i < displayCount; i++ {
-				rate := resp.Rates[i]
-				t.Logf("   %s: Buy=%s, Sell=%s (Updated: %s)",
-					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice, rate.UpdateTime)
+				rate := resp.Data.Rates[i]
+				t.Logf("   %s: Buy=%s, Sell=%s",
+					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
 			}
 
 			// Group and summarize by base currency
 			baseCurrencies := make(map[string]int)
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				// Extract base currency (before the /)
 				for i, c := range rate.CurrencyPair {
 					if c == '/' {
@@ -62,8 +62,7 @@ func TestExchangeRates(t *testing.T) {
 	})
 
 	t.Run("ListSpecificPairs", func(t *testing.T) {
-		// Test requesting specific currency pairs
-		pairs := []string{"USD/EUR", "USD/GBP", "EUR/USD", "GBP/USD"}
+		pairs := []string{"USD/EUR", "USDEUR", "USD/GBP", "USDGBP", "EUR/USD", "EURUSD", "GBP/USD", "GBPUSD"}
 
 		req := &banking.ListRatesRequest{
 			CurrencyPairs: pairs,
@@ -75,25 +74,27 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		t.Logf("✅ Retrieved %d exchange rates for specified pairs", len(resp.Rates))
+		t.Logf("✅ Retrieved %d exchange rates for specified pairs", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("📊 Requested currency pairs:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s: Buy=%s, Sell=%s",
 					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
-				t.Logf("      Updated: %s", rate.UpdateTime)
 			}
 		} else {
 			t.Logf("ℹ️  No rates found for requested pairs")
+			if len(resp.Data.UnavailableCurrencyPairs) > 0 {
+				t.Logf("⚠️  Unavailable currency pairs: %v", resp.Data.UnavailableCurrencyPairs)
+			}
 		}
 	})
 
 	t.Run("ListUSDPairs", func(t *testing.T) {
 		// Request all USD-related pairs
 		pairs := []string{
-			"USD/EUR", "USD/GBP", "USD/JPY", "USD/CHF",
-			"USD/CAD", "USD/AUD", "USD/NZD", "USD/CNY",
+			"USD/EUR", "USDEUR", "USD/GBP", "USDGBP", "USD/JPY", "USDJPY", "USD/CHF", "USDCHF",
+			"USD/CAD", "USDCAD", "USD/AUD", "USDAUD", "USD/NZD", "USDNZD", "USD/CNY", "USDCNY",
 		}
 
 		req := &banking.ListRatesRequest{
@@ -106,13 +107,17 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		t.Logf("✅ Retrieved %d USD exchange rates", len(resp.Rates))
+		t.Logf("✅ Retrieved %d USD exchange rates", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("💰 USD Exchange Rates:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s: Buy=%s, Sell=%s",
 					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
+			}
+		} else {
+			if len(resp.Data.UnavailableCurrencyPairs) > 0 {
+				t.Logf("⚠️  Unavailable currency pairs: %v", resp.Data.UnavailableCurrencyPairs)
 			}
 		}
 	})
@@ -134,11 +139,11 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		t.Logf("✅ Retrieved %d EUR exchange rates", len(resp.Rates))
+		t.Logf("✅ Retrieved %d EUR exchange rates", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("💰 EUR Exchange Rates:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s: Buy=%s, Sell=%s",
 					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
 			}
@@ -162,11 +167,11 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		t.Logf("✅ Retrieved %d African currency exchange rates", len(resp.Rates))
+		t.Logf("✅ Retrieved %d African currency exchange rates", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("💰 African Currency Exchange Rates:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s: Buy=%s, Sell=%s",
 					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
 			}
@@ -190,11 +195,11 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		t.Logf("✅ Retrieved %d cross-currency exchange rates", len(resp.Rates))
+		t.Logf("✅ Retrieved %d cross-currency exchange rates", len(resp.Data.Rates))
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("💰 Cross-Currency Exchange Rates:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s: Buy=%s, Sell=%s",
 					rate.CurrencyPair, rate.BuyPrice, rate.SellPrice)
 			}
@@ -215,14 +220,14 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		if len(resp.Rates) > 0 {
+		if len(resp.Data.Rates) > 0 {
 			t.Logf("📊 Rate Spread Analysis:")
-			for _, rate := range resp.Rates {
+			for _, rate := range resp.Data.Rates {
 				t.Logf("   %s:", rate.CurrencyPair)
 				t.Logf("      Buy Price:  %s", rate.BuyPrice)
 				t.Logf("      Sell Price: %s", rate.SellPrice)
 				// Note: Actual spread calculation would require parsing the string values
-				t.Logf("      Updated: %s", rate.UpdateTime)
+				t.Logf("      Updated: %s", resp.Data.LastUpdated)
 			}
 		}
 	})
@@ -239,12 +244,12 @@ func TestExchangeRates(t *testing.T) {
 			return
 		}
 
-		if len(resp.Rates) > 0 {
-			rate := resp.Rates[0]
+		if len(resp.Data.Rates) > 0 {
+			rate := resp.Data.Rates[0]
 			t.Logf("✅ Rate update verification:")
 			t.Logf("   Pair: %s", rate.CurrencyPair)
 			t.Logf("   Buy: %s, Sell: %s", rate.BuyPrice, rate.SellPrice)
-			t.Logf("   Last Updated: %s", rate.UpdateTime)
+			t.Logf("   Last Updated: %s", resp.Data.LastUpdated)
 			t.Logf("   ℹ️  Rates should be updated regularly by the platform")
 		}
 	})

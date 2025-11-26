@@ -86,7 +86,7 @@ func (c *APIClient) Do(ctx context.Context, method, path string, body, response 
 
 	// Decode response
 	if response != nil {
-		if err := json.NewDecoder(resp.Body).Decode(response); err != nil {
+		if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
 			return fmt.Errorf("failed to decode response: %w", err)
 		}
 	}

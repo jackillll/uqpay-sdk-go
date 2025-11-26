@@ -2,6 +2,7 @@ package uqpay
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/uqpay/uqpay-sdk-go/auth"
 	"github.com/uqpay/uqpay-sdk-go/banking"
@@ -26,7 +27,7 @@ func NewClient(clientID, apiKey string, env *configuration.Environment) (*Client
 		ClientID:    clientID,
 		APIKey:      apiKey,
 		Environment: env,
-		HTTPClient:  &http.Client{},
+		HTTPClient:  &http.Client{Timeout: 15 * time.Second},
 	}
 
 	// Create token provider
@@ -45,7 +46,7 @@ func NewClient(clientID, apiKey string, env *configuration.Environment) (*Client
 		ClientID:    clientID,
 		APIKey:      apiKey,
 		Environment: &configuration.Environment{BaseURL: env.FilesBaseURL},
-		HTTPClient:  &http.Client{},
+		HTTPClient:  &http.Client{Timeout: 15 * time.Second},
 	}
 	filesTokenProvider := auth.NewTokenProvider(
 		env.FilesBaseURL,
